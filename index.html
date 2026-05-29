@@ -471,7 +471,7 @@
             <div class="assignment-view" id="hw5">
                 <div class="view-header">
                     <span class="tag">專案版本控制</span>
-                    <h2>作業五:: opencode 多版本網站專案管理</h2>
+                    <h2>作業五：opencode 多版本網站專案管理</h2>
                 </div>
                 <div class="desc-box">
                     <strong>作業題目：</strong>請用 opencode 做一個網站專案，分版本，全部交上來。
@@ -500,8 +500,8 @@
                         <pre>function mathTool(num1, num2, action) {
     return action(num1, num2);
 }
-console.log(mathTool(10, 5, (a, b) => a + b)); // 輸出 15
-console.log(mathTool(10, 5, (a, b) => a - b)); // 輸出 5</pre>
+console.log(mathTool(10, 5, (a, b) =&gt; a + b)); // 輸出 15
+console.log(mathTool(10, 5, (a, b) =&gt; a - b)); // 輸出 5</pre>
                     </div>
 
                     <div class="quiz-card">
@@ -517,7 +517,7 @@ console.log(mathTool(10, 5, (a, b) => a - b)); // 輸出 5</pre>
                         <h4>第 3 題：箭頭函數與陣列批量轉換 (map)</h4>
                         <p>不污染或破壞原始陣列，批量映射回傳全新陣列（打 8 折）。</p>
                         <pre>const prices = [100, 200, 300];
-const discounted = prices.map(p => p * 0.8);
+const discounted = prices.map(p =&gt; p * 0.8);
 console.log(discounted); // [80, 160, 240]</pre>
                     </div>
 
@@ -535,7 +535,7 @@ console.log(myArr); // [1, 2] （外層被破壞了）</pre>
                     <div class="quiz-card">
                         <h4>第 5 題：函數回傳函數 (Higher-Order Function) 高階閉包</h4>
                         <p>運用閉包鎖定外層引數倍率，動態生成客製化乘法器。</p>
-                        <pre>const multiplier = (factor) => (n) => n * factor;
+                        <pre>const multiplier = (factor) =&gt; (n) =&gt; n * factor;
 const double = multiplier(2);
 console.log(double(10)); // 20
 const triple = multiplier(3);
@@ -552,20 +552,20 @@ console.log(triple(10)); // 30</pre>
     }
     return result;
 }
-console.log(myFilter([1,2,3,4], n => n % 2 === 0)); // [2, 4]</pre>
+console.log(myFilter([1,2,3,4], n =&gt; n % 2 === 0)); // [2, 4]</pre>
                     </div>
 
                     <div class="quiz-card">
                         <h4>第 7 題：利用高階箭頭函數處理多層物件陣列</h4>
                         <p>過濾出陣列物件中符合條件的特定資料群（如年齡大於等於 18 歲）。</p>
                         <pre>const users = [{name:"A", age:15}, {name:"B", age:20}];
-const adults = users.filter(user => user.age >= 18);
+const adults = users.filter(user =&gt; user.age &gt;= 18);
 console.log(adults); // [{name:"B", age:20}]</pre>
                     </div>
 
                     <div class="quiz-card">
                         <h4>第 8 題：記憶體指標傳參陷阱：重新賦值 vs 原位修改</h4>
-                        <p>深入探討：<code>a.push()</code> 是改動原指標記憶體（外層變更）；而 <code>b = [100]</code> 是將函數內部參考重新導向新位址（外層不變）。</p>
+                        <p>深入探討：<code>obj.score</code> 是改動原指標記憶體（外層變更）；而重新賦值是將內部參考導向新位址（外層不變）。</p>
                         <pre>function test(obj) {
     obj.score = 90;   // 修改屬性 (外層會變)
     obj = { score: 100 }; // 重新賦值 (外層不變)
@@ -575,7 +575,7 @@ console.log(adults); // [{name:"B", age:20}]</pre>
                     <div class="quiz-card">
                         <h4>第 9 題：非同步延遲執行的 Callback 控制</h4>
                         <p>使用 <code>setTimeout</code> 來達成非同步時間差調用，結合陣列方法串接字串。</p>
-                        <pre>setTimeout(() => {
+                        <pre>setTimeout(() =&gt; {
     console.log(["Task", "Completed"].join(" "));
 }, 2000);</pre>
                     </div>
@@ -584,10 +584,10 @@ console.log(adults); // [{name:"B", age:20}]</pre>
                         <h4>第 10 題：綜合實戰應用：購物車總價與折扣回呼</h4>
                         <p>將購物車陣列數字進行加總累計後，動態傳入指定的折扣回呼函數中算出最終價。</p>
                         <pre>function calculateTotal(cart, discountFunc) {
-    let total = cart.reduce((sum, price) => sum + price, 0);
+    let total = cart.reduce((sum, price) =&gt; sum + price, 0);
     return discountFunc(total);
 }
-console.log(calculateTotal([100, 200], total => total - 50)); // 250</pre>
+console.log(calculateTotal([100, 200], total =&gt; total - 50)); // 250</pre>
                     </div>
                 </div>
             </div>
@@ -623,7 +623,7 @@ console.log(title, content);</pre>
                         <h4>第 3 題：文章陣列遍歷與網頁 HTML 字串拼接</h4>
                         <p>首頁生成文章列表的核心：使用 <code>posts.forEach</code> 遍歷並用樣板字串組裝 HTML 段落。</p>
                         <pre>let html = "";
-posts.forEach(p => {
+posts.forEach(p =&gt; {
     html += `&lt;div class="post"&gt;${p.title}&lt;/div&gt;`;
 });</pre>
                     </div>
@@ -637,9 +637,9 @@ console.log("正在查詢 ID 為 " + params.id + " 的文章");</pre>
 
                     <div class="quiz-card">
                         <h4>第 5 題：實作非同步「錯誤優先」回呼函數 (Error-First Callback)</h4>
-                        <p class="note">老師引導補充：Node.js 核心工業標準慣例，第一個參數放 err（有錯傳錯誤，無錯傳 null），第二個參數才安全丟回資料。</p>
+                        <p class="note">Node.js 核心工業標準慣例，第一個參數放 err，第二個參數才安全丟回資料。</p>
                         <pre>function fetchData(id, callback) {
-    if (id < 0) {
+    if (id &lt; 0) {
         return callback(new Error("ID不合法"), null);
     }
     const fakeData = { id: id, status: "success" };
@@ -657,9 +657,8 @@ console.log(obj.title); // Nodejs</pre>
 
                     <div class="quiz-card">
                         <h4>第 7 題：模擬 SQL 資料庫查詢行為 (Simulating Database Query)</h4>
-                        <p class="note">老師引導補充：模仿 sqlite3 套件的 <code>db.get(sql, params, callback)</code> API，讓學生明白非同步完成後回呼函數如何承接內部查到的 row 資料。</p>
+                        <p class="note">模仿 sqlite3 套件的 <code>db.get(sql, params, callback)</code> API，讓學生明白非同步完成後回呼函數如何承接內部查到的 row 資料。</p>
                         <pre>function fakeGet(sql, params, callback) {
-    // 模擬非同步查詢
     setTimeout(() => {
         const fakeRow = { id: params[0], title: "資料庫回傳的文章" };
         callback(null, fakeRow);
@@ -670,7 +669,7 @@ console.log(obj.title); // Nodejs</pre>
                     <div class="quiz-card">
                         <h4>第 8 題：樣板字串與三元運算子的條件式渲染</h4>
                         <p>在 HTML 範本中利用短路或三元運算子，動態渲染使用者登入狀態。</p>
-                        <pre>const renderHeader = (user) => {
+                        <pre>const renderHeader = (user) =&gt; {
     return `&lt;h1&gt;歡迎, ${user ? user.name : "訪客"}&lt;/h1&gt;`;
 };</pre>
                     </div>
@@ -679,13 +678,13 @@ console.log(obj.title); // Nodejs</pre>
                         <h4>第 9 題：文章字串切片與前台長度預覽 (slice)</h4>
                         <p>利用 <code>str.slice(0, 10) + "..."</code> 限制字數，實作部落格首頁的文章大綱摘要。</p>
                         <pre>const content = "這是一篇非常長長長的文章內容描述...";
-const summary = content.length > 10 ? content.slice(0, 10) + "..." : content;
+const summary = content.length &gt; 10 ? content.slice(0, 10) + "..." : content;
 console.log(summary);</pre>
                     </div>
 
                     <div class="quiz-card">
                         <h4>第 10 題：後端路由的錯誤優先攔截與提前回傳中斷</h4>
-                        <p>理解後端代碼中隨處可見的 <code>if (err) return callback(err);</code> 機制，若不合法則丟回錯誤並強制中斷，防系統因後續讀取 undefined 而崩潰。</p>
+                        <p>理解後端代碼中隨處可見的 <code>if (err) return callback(err);</code> 機制，防系統因後續讀取 undefined 而崩潰。</p>
                         <pre>function checkAdmin(user, callback) {
     if (!user || user.role !== "admin") {
         return callback("權限不足，拒絕訪問"); // 提前 return 中斷
@@ -707,8 +706,17 @@ console.log(summary);</pre>
 
                 <h3 class="section-title"><i class="fa-solid fa-server"></i> 後端與前端架構實戰</h3>
                 <ul class="tech-list">
-                    <li class="tech-item"><strong>原生 server.js 判斷鏈：</strong>精確攔截路徑，利用 <code>path.extname()</code> 辨識 <code>.css</code> (text/css) 與 <code>.js</code>，確保瀏覽器正確解析，開闢 <code>/products</code> API 並解鎖跨域 CORS 響應頭。</li>
-                    <li class="tech-item"><strong>LocalStorage 購物車持久化：</strong>利用 <code>JSON.stringify</code> 與 <code>JSON.parse</code> 序列化快取商務資料，實作流暢的商品精確刪除與動態總計。</li>
+                    <li class="tech-item"><strong>原生 server.js 判斷鏈：</strong>精確攔截路徑，利用 <code>path.extname()</code> 辨識 <code>.css</code> 與 <code>.js</code>，開闢 <code>/products</code> API 並解鎖跨域 CORS 響應頭。</li>
+                    <li class="tech-item"><strong>LocalStorage 購物車持久化：</strong>利用序列化快取商務資料，實作流暢的商品精確刪除與動態總計。</li>
                 </ul>
 
-                <h3 class="section-title"><i class="fa-solid fa-bug"></i> 實
+                <h3 class="section-title"><i class="fa-solid fa-bug"></i> 實戰開發除錯紀錄 (Debug Log)</h3>
+                <div class="debug-log">
+                    <h4>⚠️ 痛點一：頁面渲染異常（畫面黑屏空白）</h4>
+                    <p><strong>原因：</strong> 編輯整合原始碼時，不小心將 <code>index.html</code> 骨架重複嵌套進 <code>cart.html</code> 內部（html 內包含 html），使瀏覽器 DOM 樹解析崩潰。</p>
+                    <p style="margin-top: 5px; color: var(--accent);"><strong>解法：</strong> 全面重構剔除冗餘標籤，回復單一乾淨標準 HTML5 結構。</p>
+                </div>
+                <div class="debug-log" style="border-left-color: var(--warning); background-color: rgba(251, 191, 36, 0.05);">
+                    <h4>⚠️ 痛點二：靜態資源路由權限過寬攔截錯誤</h4>
+                    <p><strong>原因：</strong> <code>server.js</code> 將寬鬆條件判斷寫在頂層，攔截了所有精確請求，使資源檔被誤賦予成圖片 MIME 類型（image/jpeg）遭瀏覽器拒絕解析。</p>
+                    <p style="margin-top: 5px; color: var(--warning); "><strong>解法：</strong> 調整判斷鏈順序：「精確網頁路徑」置頂，其次為「特定資源目錄」，通用規則與 404 放最
