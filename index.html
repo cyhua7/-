@@ -719,4 +719,37 @@ console.log(summary);</pre>
                 <div class="debug-log" style="border-left-color: var(--warning); background-color: rgba(251, 191, 36, 0.05);">
                     <h4>⚠️ 痛點二：靜態資源路由權限過寬攔截錯誤</h4>
                     <p><strong>原因：</strong> <code>server.js</code> 將寬鬆條件判斷寫在頂層，攔截了所有精確請求，使資源檔被誤賦予成圖片 MIME 類型（image/jpeg）遭瀏覽器拒絕解析。</p>
-                    <p style="margin-top: 5px; color: var(--warning); "><strong>解法：</strong> 調整判斷鏈順序：「精確網頁路徑」置頂，其次為「特定資源目錄」，通用規則與 404 放最
+                    <p style="margin-top: 5px; color: var(--warning); "><strong>解法：</strong> 調整判斷鏈順序：「精確網頁路徑」置頂，其次為「特定資源目錄」，通用規則與 404 放最底層。</p>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navItems = document.querySelectorAll('.nav-item');
+            const views = document.querySelectorAll('.assignment-view');
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 1. 清除所有選單的 active 樣式
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+
+                    // 2. 獲取點擊的目標 ID
+                    const targetId = item.getAttribute('data-target');
+
+                    // 3. 隱藏所有作業面板，只秀出對應的目標面板
+                    views.forEach(view => {
+                        view.classList.remove('active');
+                        if(view.id === targetId) {
+                            view.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
