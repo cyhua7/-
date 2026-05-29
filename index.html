@@ -289,7 +289,7 @@
             color: var(--accent);
         }
 
-        /* 針對第 6, 7 題的題目列表樣式 */
+        /* 題目列表樣式 */
         .sub-quiz-list {
             display: flex;
             flex-direction: column;
@@ -471,7 +471,7 @@
             <div class="assignment-view" id="hw5">
                 <div class="view-header">
                     <span class="tag">專案版本控制</span>
-                    <h2>作業五：opencode 多版本網站專案管理</h2>
+                    <h2>作業五:: opencode 多版本網站專案管理</h2>
                 </div>
                 <div class="desc-box">
                     <strong>作業題目：</strong>請用 opencode 做一個網站專案，分版本，全部交上來。
@@ -486,59 +486,108 @@
             <div class="assignment-view" id="hw6">
                 <div class="view-header">
                     <span class="tag">JS 進階核心邏輯</span>
-                    <h2>作業六：JS 進階邏輯與高階函數修煉 (10題解)</h2>
+                    <h2>作業六：JS 進階邏輯與高階函數修煉 (10題解全收錄)</h2>
                 </div>
                 <div class="desc-box">
                     <strong>作業題目：</strong>寫出 10 題有關 JavaScript 函數與參數的練習解答。深入函數式程式設計（Functional Programming）與記憶體配置核心觀念。
                 </div>
 
-                <h3 class="section-title"><i class="fa-solid fa-list-check"></i> 10題解核心代碼拆解</h3>
+                <h3 class="section-title"><i class="fa-solid fa-list-check"></i> 完整 10 題解原始碼展示</h3>
                 <div class="sub-quiz-list">
                     <div class="quiz-card">
-                        <h4>1. Callback 基礎實作 (mathTool)</h4>
-                        <p>將運算邏輯當做回呼函數傳入，達成解耦的目的。</p>
-                        <pre>function mathTool(num1, num2, action) { return action(num1, num2); }
-mathTool(10, 5, (a, b) => a + b); // 15</pre>
+                        <h4>第 1 題：Callback 基礎解耦應用 (mathTool)</h4>
+                        <p>將計算邏輯（相加、相減）抽離成匿名函數傳入，實作邏輯分離。</p>
+                        <pre>function mathTool(num1, num2, action) {
+    return action(num1, num2);
+}
+console.log(mathTool(10, 5, (a, b) => a + b)); // 輸出 15
+console.log(mathTool(10, 5, (a, b) => a - b)); // 輸出 5</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>2. 立即執行函數 (IIFE)與範疇鎖定</h4>
-                        <p>建立獨立區域範疇，鎖定內部變數防全域污染。</p>
-                        <pre>(function() { let count = 100; console.log("Count is: " + count); })();</pre>
+                        <h4>第 2 題：立即執行函數 (IIFE) 與範疇鎖定</h4>
+                        <p>建立獨立的私有範疇，鎖定內部關鍵變數防全域污染。</p>
+                        <pre>(function() {
+    let localVar = "私有變數";
+    console.log("IIFE 自動執行，內部變數：" + localVar);
+})();</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>3. 箭頭函數與陣列轉換 (map)</h4>
-                        <p>不污染原陣列，批量映射回傳打 8 折新陣列。</p>
-                        <pre>const discounted = prices.map(p => p * 0.8);</pre>
+                        <h4>第 3 題：箭頭函數與陣列批量轉換 (map)</h4>
+                        <p>不污染或破壞原始陣列，批量映射回傳全新陣列（打 8 折）。</p>
+                        <pre>const prices = [100, 200, 300];
+const discounted = prices.map(p => p * 0.8);
+console.log(discounted); // [80, 160, 240]</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>4. 陣列參數的「破壞性修改」</h4>
-                        <p>傳址特性：在函數內操作 <code>arr.pop()</code> 會改動到外層陣列的記憶體實體。</p>
+                        <h4>第 4 題：陣列與物件引數的「破壞性修改」特性</h4>
+                        <p>探討傳址（Pass by Reference）特性。在函數內操作 <code>arr.pop()</code> 會直接改動到外層陣列的記憶體實體。</p>
+                        <pre>function modifyArr(arr) {
+    arr.pop();
+}
+let myArr = [1, 2, 3];
+modifyArr(myArr);
+console.log(myArr); // [1, 2] （外層被破壞了）</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>5. 函數回傳函數 (Higher-Order Function)</h4>
-                        <p>利用閉包鎖定外層引數，重複調用。</p>
+                        <h4>第 5 題：函數回傳函數 (Higher-Order Function) 高階閉包</h4>
+                        <p>運用閉包鎖定外層引數倍率，動態生成客製化乘法器。</p>
                         <pre>const multiplier = (factor) => (n) => n * factor;
-const double = multiplier(2); // double(10) 輸出 20</pre>
+const double = multiplier(2);
+console.log(double(10)); // 20
+const triple = multiplier(3);
+console.log(triple(10)); // 30</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>6. Callback 篩選器 (myFilter)</h4>
-                        <p>手寫 filter 邏輯，依據 <code>callback(item)</code> 的布林結果決定留存。</p>
+                        <h4>第 6 題：手寫 Callback 條件篩選器 (myFilter)</h4>
+                        <p>手動實作 filter 核心邏輯，依據 <code>callback(item)</code> 的布林值結果決定留存。</p>
+                        <pre>function myFilter(array, callback) {
+    let result = [];
+    for(let item of array) {
+        if(callback(item)) result.push(item);
+    }
+    return result;
+}
+console.log(myFilter([1,2,3,4], n => n % 2 === 0)); // [2, 4]</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>7. 箭頭函數處理物件陣列</h4>
-                        <pre>const adults = users.filter(user => user.age >= 18);</pre>
+                        <h4>第 7 題：利用高階箭頭函數處理多層物件陣列</h4>
+                        <p>過濾出陣列物件中符合條件的特定資料群（如年齡大於等於 18 歲）。</p>
+                        <pre>const users = [{name:"A", age:15}, {name:"B", age:20}];
+const adults = users.filter(user => user.age >= 18);
+console.log(adults); // [{name:"B", age:20}]</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>8. 參數傳址陷阱：重新賦值 vs 修改</h4>
-                        <p><code>a.push(99)</code> 改動原記憶體，外層變更；<code>b = [100]</code> 是將內部參考導向新位址，外層不變。</p>
+                        <h4>第 8 題：記憶體指標傳參陷阱：重新賦值 vs 原位修改</h4>
+                        <p>深入探討：<code>a.push()</code> 是改動原指標記憶體（外層變更）；而 <code>b = [100]</code> 是將函數內部參考重新導向新位址（外層不變）。</p>
+                        <pre>function test(obj) {
+    obj.score = 90;   // 修改屬性 (外層會變)
+    obj = { score: 100 }; // 重新賦值 (外層不變)
+}</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>9. 延遲執行的 Callback</h4>
-                        <pre>setTimeout(() => console.log(["Task", "Completed"].join(" ")), 2000);</pre>
+                        <h4>第 9 題：非同步延遲執行的 Callback 控制</h4>
+                        <p>使用 <code>setTimeout</code> 來達成非同步時間差調用，結合陣列方法串接字串。</p>
+                        <pre>setTimeout(() => {
+    console.log(["Task", "Completed"].join(" "));
+}, 2000);</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>10. 綜合應用：計算總價</h4>
-                        <p>將 cart 陣列所有數字先相加（可搭配 <code>reduce</code>），再丟入 <code>discountFunc</code> 回呼函數計算折扣。</p>
+                        <h4>第 10 題：綜合實戰應用：購物車總價與折扣回呼</h4>
+                        <p>將購物車陣列數字進行加總累計後，動態傳入指定的折扣回呼函數中算出最終價。</p>
+                        <pre>function calculateTotal(cart, discountFunc) {
+    let total = cart.reduce((sum, price) => sum + price, 0);
+    return discountFunc(total);
+}
+console.log(calculateTotal([100, 200], total => total - 50)); // 250</pre>
                     </div>
                 </div>
             </div>
@@ -546,62 +595,103 @@ const double = multiplier(2); // double(10) 輸出 20</pre>
             <div class="assignment-view" id="hw7">
                 <div class="view-header">
                     <span class="tag">後端模擬與異步規範</span>
-                    <h2>作業七：後端資料庫對接與異步錯誤優先回呼 (10題解)</h2>
+                    <h2>作業七：後端資料庫對接與異步錯誤優先回呼 (10題解全收錄)</h2>
                 </div>
                 <div class="desc-box">
                     <strong>作業題目：</strong>寫出 10 題專為 Express 部落格範例程式設計的挑戰題解。打通「資料如何從資料庫流向網頁」與「非同步錯誤優先回呼」的脈絡。
                 </div>
 
-                <h3 class="section-title"><i class="fa-solid fa-list-check"></i> 10題解後端邏輯拆解</h3>
+                <h3 class="section-title"><i class="fa-solid fa-list-check"></i> 完整 10 題解原始碼展示</h3>
                 <div class="sub-quiz-list">
                     <div class="quiz-card">
-                        <h4>1. 物件屬性存取</h4>
-                        <p>掌握點符號 <code>post.title</code> 與中括號動態 <code>post["title"]</code> 存取。</p>
+                        <h4>第 1 題：後端物件屬性動態存取</h4>
+                        <p>掌握點符號 <code>post.title</code> 與中括號動態 <code>post["title"]</code> 在取值時的差異。</p>
+                        <pre>const post = { title: "JS教學", views: 50 };
+console.log(post.title);
+console.log(post["views"]);</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>2. 物件解構賦值 (Destructuring)</h4>
-                        <p>模擬 Express 接收 POST 請求資料：</p>
-                        <pre>const { title, content } = req.body;</pre>
+                        <h4>第 2 題：後端路由請求體物件解構賦值 (Destructuring)</h4>
+                        <p>模擬 Express 接收到前端 POST 請求時，秒速抽取特定的資料欄位：</p>
+                        <pre>const req = { body: { title: "新文章", content: "內容描述..." } };
+const { title, content } = req.body;
+console.log(title, content);</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>3. 陣列遍歷與字串拼接</h4>
-                        <p>首頁生成文章列表：使用 <code>posts.forEach</code> 遍歷並用樣板字串組裝 HTML。</p>
+                        <h4>第 3 題：文章陣列遍歷與網頁 HTML 字串拼接</h4>
+                        <p>首頁生成文章列表的核心：使用 <code>posts.forEach</code> 遍歷並用樣板字串組裝 HTML 段落。</p>
+                        <pre>let html = "";
+posts.forEach(p => {
+    html += `&lt;div class="post"&gt;${p.title}&lt;/div&gt;`;
+});</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>4. 字典與動態參數 (URL Params)</h4>
-                        <p>模擬 <code>req.params.id</code> 鍵值對。</p>
+                        <h4>第 4 題：字典鍵值對與動態路由參數 (URL Params) 模擬</h4>
+                        <p>理解 Express 的 <code>req.params.id</code> 對照模型，將 ID 映射到對應的文章物件中。</p>
+                        <pre>const params = { id: "5" };
+console.log("正在查詢 ID 為 " + params.id + " 的文章");</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>5. 實作「錯誤優先」回呼函數 (Error-First Callback)</h4>
-                        <p class="note">老師引導補充：Node.js 標準慣例，第一個參數放 err，無錯則傳 null，第二個參數丟出資料。</p>
+                        <h4>第 5 題：實作非同步「錯誤優先」回呼函數 (Error-First Callback)</h4>
+                        <p class="note">老師引導補充：Node.js 核心工業標準慣例，第一個參數放 err（有錯傳錯誤，無錯傳 null），第二個參數才安全丟回資料。</p>
                         <pre>function fetchData(id, callback) {
+    if (id < 0) {
+        return callback(new Error("ID不合法"), null);
+    }
     const fakeData = { id: id, status: "success" };
-    callback(null, fakeData); // 成功傳出資料
+    callback(null, fakeData);
 }</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>6. JSON 字串解析</h4>
-                        <p>使用 <code>JSON.parse(jsonStr)</code> 將資料轉回可操作的 JS 物件。</p>
+                        <h4>第 6 題：JSON 字串反序列化解析與防錯</h4>
+                        <p>使用 <code>JSON.parse(jsonStr)</code> 將資料庫或 API 抓回的純文字轉回可操作的 JS 物件。</p>
+                        <pre>const jsonStr = '{"title": "Nodejs", "id": 1}';
+const obj = JSON.parse(jsonStr);
+console.log(obj.title); // Nodejs</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>7. 模擬資料庫的查詢行為 (Simulating Database Query)</h4>
-                        <p class="note">老師引導補充：模仿 sqlite3 套件 db.get API，讓學生明白匿名回呼函數如何承接內部查到的 row 資料。</p>
+                        <h4>第 7 題：模擬 SQL 資料庫查詢行為 (Simulating Database Query)</h4>
+                        <p class="note">老師引導補充：模仿 sqlite3 套件的 <code>db.get(sql, params, callback)</code> API，讓學生明白非同步完成後回呼函數如何承接內部查到的 row 資料。</p>
                         <pre>function fakeGet(sql, params, callback) {
-    const fakeRow = { id: 1, title: "掌握 JavaScript 函數", content: "..." };
-    callback(null, fakeRow);
+    // 模擬非同步查詢
+    setTimeout(() => {
+        const fakeRow = { id: params[0], title: "資料庫回傳的文章" };
+        callback(null, fakeRow);
+    }, 500);
 }</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>8. 樣板字串與三元運算子條件式渲染</h4>
-                        <pre>const html = `&lt;h1&gt;Welcome, ${user ? user : "Stranger"}&lt;/h1&gt;`;</pre>
+                        <h4>第 8 題：樣板字串與三元運算子的條件式渲染</h4>
+                        <p>在 HTML 範本中利用短路或三元運算子，動態渲染使用者登入狀態。</p>
+                        <pre>const renderHeader = (user) => {
+    return `&lt;h1&gt;歡迎, ${user ? user.name : "訪客"}&lt;/h1&gt;`;
+};</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>9. 字串切片與前台預覽 (slice)</h4>
-                        <p>利用 <code>str.slice(0, 10) + "..."</code> 實作文章大綱摘要。</p>
+                        <h4>第 9 題：文章字串切片與前台長度預覽 (slice)</h4>
+                        <p>利用 <code>str.slice(0, 10) + "..."</code> 限制字數，實作部落格首頁的文章大綱摘要。</p>
+                        <pre>const content = "這是一篇非常長長長的文章內容描述...";
+const summary = content.length > 10 ? content.slice(0, 10) + "..." : content;
+console.log(summary);</pre>
                     </div>
+
                     <div class="quiz-card">
-                        <h4>10. 錯誤優先回呼攔截處理</h4>
-                        <p>理解後端不斷出現的 <code>if (err) return ...</code>。若非 admin 則傳入 <code>callback("Access Denied")</code> 並提前 return 中斷防系統崩潰。</p>
+                        <h4>第 10 題：後端路由的錯誤優先攔截與提前回傳中斷</h4>
+                        <p>理解後端代碼中隨處可見的 <code>if (err) return callback(err);</code> 機制，若不合法則丟回錯誤並強制中斷，防系統因後續讀取 undefined 而崩潰。</p>
+                        <pre>function checkAdmin(user, callback) {
+    if (!user || user.role !== "admin") {
+        return callback("權限不足，拒絕訪問"); // 提前 return 中斷
+    }
+    callback(null, "驗證通過");
+}</pre>
                     </div>
                 </div>
             </div>
@@ -621,46 +711,4 @@ const double = multiplier(2); // double(10) 輸出 20</pre>
                     <li class="tech-item"><strong>LocalStorage 購物車持久化：</strong>利用 <code>JSON.stringify</code> 與 <code>JSON.parse</code> 序列化快取商務資料，實作流暢的商品精確刪除與動態總計。</li>
                 </ul>
 
-                <h3 class="section-title"><i class="fa-solid fa-bug"></i> 實戰開發除錯紀錄 (Debug Log)</h3>
-                <div class="debug-log">
-                    <h4>⚠️ 痛點一：頁面渲染異常（畫面黑屏空白）</h4>
-                    <p><strong>原因：</strong> 編輯整合原始碼時，不小心將 <code>index.html</code> 骨架重複嵌套進 <code>cart.html</code> 內部（html 內包含 html），使瀏覽器 DOM 樹解析崩潰。</p>
-                    <p style="margin-top: 5px; color: var(--accent);"><strong>解法：</strong> 全面重構剔除冗餘標籤，回復單一乾淨標準 HTML5 結構。</p>
-                </div>
-                <div class="debug-log" style="border-left-color: var(--warning); background-color: rgba(251, 191, 36, 0.05);">
-                    <h4>⚠️ 痛點二：靜態資源路由權限過寬攔截錯誤</h4>
-                    <p><strong>原因：</strong> <code>server.js</code> 將寬鬆條件判斷（如 <code>startsWith("/")</code>）寫在頂層，攔截了所有精確請求，使資源檔被誤賦予成圖片 MIME 類型（image/jpeg）遭瀏覽器拒絕解析。</p>
-                    <p style="margin-top: 5px; color: var(--warning); "><strong>解法：</strong> 調整判斷鏈順序：「精確網頁路徑」置頂，其次為「特定資源目錄」，通用規則與 404 放最底層。</p>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navItems = document.querySelectorAll('.nav-item');
-            const views = document.querySelectorAll('.assignment-view');
-
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    // 1. 清除所有選單的 active 樣式，並為當前點擊項加上 active
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    item.classList.add('active');
-
-                    // 2. 獲取點擊的目標 ID
-                    const targetId = item.getAttribute('data-target');
-
-                    // 3. 隱藏所有作業面板，只秀出對應的目標面板
-                    views.forEach(view => {
-                        view.classList.remove('active');
-                        if(view.id === targetId) {
-                            view.classList.add('active');
-                        }
-                    });
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+                <h3 class="section-title"><i class="fa-solid fa-bug"></i> 實
